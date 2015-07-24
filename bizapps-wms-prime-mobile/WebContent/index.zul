@@ -1,0 +1,95 @@
+
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/bootstrap/themes/bootstrap-default.min.css" if="${empty param.theme}"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/docs.css" ?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap/v3/assets/css/pygments-manni.css" ?>
+<?script src="/bootstrap/v3/assets/js/html5shiv.js" if="${zk.ie < 9}" ?>
+<?script src="/bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
+<zk>
+
+	<style src="public/bootstrap-slate.min.css" />
+
+	<!-- <style> .z-groupbox-hr { background:#91CB14;border-radius: 30px 30px 
+		30px 30px } .z-groupbox { border-radius: 30px 30px 30px 30px } </style> -->
+	<zscript>
+		String variable = execution.getParameter("respuesta");
+		String
+		a
+		= "";
+		if (variable == null)
+		a = "INICIAR SESION";
+		else
+		a =
+		execution.getParameter("respuesta");
+	</zscript>
+	<window title="" border="none" height="100%" width="100%"
+		contentStyle="overflow:auto" apply="security.controlador.CIndex"
+		style="border:none; background-color:#A8E91F">
+		<borderlayout height="100%"
+			style="background-repeat:no-repeat;  background-color:#A8E91F; border:none">
+			<center border="none" style="background-color:#A8E91F; border:none">
+				<vbox height="100%" width="100%" align="center" pack="center"
+					style="border:none">
+					<div width="100%" height="10%" align="right">
+						<image src="/public/imagenes/generales/LogoIndex.jpg" />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+						<separator />
+
+					</div>
+					<div height="100%" width="100%" align="center">
+						<hlayout width="100%">
+							<h:form id="inicioSesion" action="j_spring_security_check"
+								method="POST" xmlns:h="native" align="left">
+								<vlayout width="100%">
+									<textbox placeholder="Usuario" height="35px" id="log_usuario"
+										name="username" hflex="1" width="70%" />
+								</vlayout>
+								<separator />
+								<vlayout width="100%">
+									<textbox placeholder="Contraseña" height="35px" id="log_clave"
+										type="password" name="password" width="100%" />
+								</vlayout>
+								<separator />
+								<separator />
+								<hlayout width="100%">
+									<button type="submit" label="Entrar"
+										image="/public/imagenes/botones/entrar.png" height="37px"
+										width="200px" style="font-size:18px" />
+								</hlayout>
+							</h:form>
+						</hlayout>
+						<vlayout width="100%">
+							<separator />
+							<separator />
+							<a href="">
+								<label id="lblOlvidoClave" sclass="pointer" value="¿Olvido su Contraseña?"
+									style="color:red;margin-left:10px;font-weight:bold;font-size:14px" />
+							</a>
+						</vlayout>
+					</div>
+				</vbox>
+			</center>
+			<south style="background-color:#A8E91F; border:none" border="0"
+				height="15%" collapsible="false">
+				<div align="center" sclass="footer">
+					<separator></separator>
+					<label style="padding-center:35%;color: black"
+						value="© 2014 SERLOVECA C.A | Desarrollado por BIZAPPS,C.A">
+					</label>
+				</div>
+			</south>
+		</borderlayout>
+	</window>
+</zk>

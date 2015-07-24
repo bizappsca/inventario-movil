@@ -1,0 +1,55 @@
+<?page title="Confirmacion de Carga" contentType="text/html;charset=utf-8"?>
+<?link rel="stylesheet" type="text/css"	href="../../bootstrap/v3/bootstrap/themes/bootstrap-default.min.css" if="${empty param.theme}"?>
+<?link rel="stylesheet" type="text/css"	href="../../bootstrap/v3/assets/css/docs.css" ?>
+<?link rel="stylesheet" type="text/css"	href="../../bootstrap/v3/assets/css/pygments-manni.css" ?>
+<?script src="../../bootstrap/v3/assets/js/html5shiv.js" if="${zk.ie < 9}" ?>
+<?script src="../../bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
+<zk xmlns:w="client" xmlns:n="native">
+	<style src="../../public/bootstrap-slate.min.css" />
+	<div apply="controlador.maestros.CConfirmarDetalle" height="100%">
+		<vbox height="100%">
+			<div height="8%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
+				style="border:none">
+				<separator />
+
+				<hbox widths="20%,80%" width="100%">
+					<div>
+						<image id="imagen" style="cursor:pointer"
+							src="../../public/imagenes/botones/arrowBack.png" class="img-rounded" />
+					</div>
+					<div>
+						<label id="label" class="label" />
+					</div>
+				</hbox>
+			</div>
+			<separator />
+			<div height="100%" width="auto" class="bs-example">
+				<listbox id="ltbPedidos" span="true" height="auto" width="auto">
+					<template name="model">
+						<listitem>
+							<listcell>
+								<vlayout>
+									<hlayout>
+										<label value="Item:" style="color:black; font-weight:bold" />
+										<label value="${each.sditm}, ${each.sdlitm}, ${each.sduom}" />
+									</hlayout>
+									<hlayout>
+										<label value="Lote:" style="color:black; font-weight:bold" />
+										<label value="${each.sdlotn}" />
+									</hlayout>
+									<hlayout>
+										<label value="Cantidad:" style="color:black; font-weight:bold" />
+										<label value="${each.sdpqor}" />
+									</hlayout>
+								</vlayout>
+							</listcell>
+							<!-- <listcell label="${each.sditm}" /> <listcell label="${each.sdlitm}" 
+								/> <listcell label="${each.sdlotn}" /> <listcell label="${each.sduom}" /> 
+								<listcell label="${each.sdpqor}" /> -->
+						</listitem>
+					</template>
+				</listbox>
+			</div>
+		</vbox>
+	</div>
+</zk>

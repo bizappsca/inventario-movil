@@ -1,0 +1,80 @@
+<?page title="Confirmacion de Carga" contentType="text/html;charset=utf-8"?>
+<?link rel="stylesheet" type="text/css"	href="../../bootstrap/v3/bootstrap/themes/bootstrap-default.min.css" if="${empty param.theme}"?>
+<?link rel="stylesheet" type="text/css"	href="../../bootstrap/v3/assets/css/docs.css" ?>
+<?link rel="stylesheet" type="text/css"	href="../../bootstrap/v3/assets/css/pygments-manni.css" ?>
+<?script src="../../bootstrap/v3/assets/js/html5shiv.js" if="${zk.ie < 9}" ?>
+<?script src="../../bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
+<zk xmlns:w="client" xmlns:n="native">
+	<style src="../../public/bootstrap-slate.min.css" />
+	<div apply="controlador.maestros.CConfirmarPedido" height="100%">
+		<vbox height="100%">
+			<div height="8%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
+				style="border:none">
+				<separator />
+				<hbox widths="20%,80%" width="100%">
+					<div>
+						<image id="imagen" style="cursor:pointer"
+							src="../../public/imagenes/botones/arrowBack.png" class="img-rounded" />
+					</div>
+					<div>
+						<label value="Confirmacion de Carga" class="label" />
+					</div>
+				</hbox>
+			</div>
+			<div height="auto" width="auto" class="bs-example">
+				<grid width="auto">
+					<columns visible="false">
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+						<column label="" width="25%" />
+					</columns>
+					<rows>
+						<row>
+							<label value="Desde:" class="label" />
+							<datebox readonly="true" width="50%" id="dtbDesde"
+								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion" />
+							<label value="Hasta:" class="label" />
+							<datebox readonly="true" width="auto" id="dtbHasta"
+								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion" />
+						</row>
+					</rows>
+				</grid>
+			</div>
+			<separator />
+			<div height="100%" width="auto" class="bs-example">
+				<listbox id="ltbLista" height="auto" width="auto"
+					emptyMessage="No Hay Pedidos para este intervalo de fechas" span="true">
+					<!-- <listhead> <listheader label="Fecha" hflex="min" /> <listheader 
+						label="Nº Carga" hflex="min" /> <listheader label="Item" hflex="min" /> <listheader 
+						label="Descripcion" hflex="min" /> <listheader label="Cedula" hflex="min" 
+						/> <listheader label="Nombre" hflex="min" /> </listhead> -->
+					<template name="model">
+						<listitem>
+							<listcell>
+								<vlayout>
+									<hlayout>
+										<label value="Fecha:" style="color:black; font-weight:bold" />
+										<label value="${each.traerFecha()}" />
+										<label value="Nro Carga:" style="color:black; font-weight:bold" />
+										<label value="${each.sdcars}" />
+									</hlayout>
+									<hlayout>
+										<label value="Item:" style="color:black; font-weight:bold" />
+										<label value="${each.sditm}, ${each.sdlitm}" />
+										<image src="../../public/imagenes/botones/arrow.png"
+											class="img-rounded" />
+									</hlayout>
+									<hlayout>
+										<label value="Chofer:" style="color:black; font-weight:bold" />
+										<label value="${each.sdir04}, ${each.sdir05}" />
+									</hlayout>
+								</vlayout>
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
+			</div>
+		</vbox>
+	</div>
+</zk>
