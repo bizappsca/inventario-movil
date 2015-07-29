@@ -7,6 +7,7 @@
 <zk>
 
 	<style src="public/bootstrap-slate.min.css" />
+	<script src="public/progress.js" />
 
 	<!-- <style> .z-groupbox-hr { background:#91CB14;border-radius: 30px 30px 
 		30px 30px } .z-groupbox { border-radius: 30px 30px 30px 30px } </style> -->

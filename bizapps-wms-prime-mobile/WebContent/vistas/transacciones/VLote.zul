@@ -8,51 +8,45 @@
 	<style src="../../public/bootstrap-slate.min.css" />
 	<style src="../../public/Estilo.css" />
 	<script src="../../public/progress.js" />
-	<div apply="controlador.maestros.CConfirmarDetalle" height="100%">
+	<div apply="controlador.maestros.CLote" height="100%">
 		<vbox height="100%">
 			<div height="8%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
 				style="border:none">
 				<separator />
-
 				<hbox widths="20%,80%" width="100%">
 					<div>
 						<image id="imagen" style="cursor:pointer"
 							src="../../public/imagenes/botones/arrowBack.png" class="img-rounded" />
 					</div>
 					<div>
-						<label id="label" class="label" />
+						<label value="Lotes" class="label" />
 					</div>
 				</hbox>
 			</div>
 			<separator />
 			<div height="100%" width="auto" class="bs-example">
-				<listbox id="ltbPedidos" span="true" height="auto" width="auto">
-					<template name="model">
-						<listitem>
-							<listcell>
-								<vlayout>
-									<hlayout>
-										<label value="Item:" style="color:black; font-weight:bold" />
-										<label value="${each.sditm}, ${each.sdlitm}, ${each.sduom}" />
-									</hlayout>
-									<hlayout>
-										<label value="Lote:" style="color:black; font-weight:bold" />
-										<label value="${each.sdlotn}" />
-										<image src="../../public/imagenes/botones/arrow.png"
-											class="img-rounded" />
-									</hlayout>
-									<hlayout>
-										<label value="Cantidad:" style="color:black; font-weight:bold" />
-										<label value="${each.sdpqor}" />
-									</hlayout>
-								</vlayout>
-							</listcell>
-							<!-- <listcell label="${each.sditm}" /> <listcell label="${each.sdlitm}" 
-								/> <listcell label="${each.sdlotn}" /> <listcell label="${each.sduom}" /> 
-								<listcell label="${each.sdpqor}" /> -->
-						</listitem>
-					</template>
-				</listbox>
+				<vbox>
+					<textbox id="txtSearch" hflex="1" maxlength="100" width="10px" />
+					<listbox id="ltbPedidos" height="auto" width="auto"
+						emptyMessage="No Hay Pedidos para este intervalo de fechas" span="true">
+						<template name="model">
+							<listitem>
+								<listcell>
+									<vlayout>
+										<hlayout>
+											<label value="Lote:" style="color:black; font-weight:bold" />
+											<label value="${each.id.lilotn}" />
+										</hlayout>
+										<hlayout>
+											<label value="Cantidad:" style="color:black; font-weight:bold" />
+											<label value="${each.lipqoh}" />
+										</hlayout>
+									</vlayout>
+								</listcell>
+							</listitem>
+						</template>
+					</listbox>
+				</vbox>
 			</div>
 		</vbox>
 	</div>

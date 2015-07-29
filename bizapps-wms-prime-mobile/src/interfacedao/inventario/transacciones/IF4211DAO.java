@@ -95,8 +95,14 @@ public interface IF4211DAO extends JpaRepository<F4211, F4211PK> {
 
 	List<F4211> findBySddocAndSdxlln(Double docGrande, Double valueOf);
 
-	List<F4211> findBySdmcuInAndIdSddctoAndSdnxtrInOrSdlttrInAndSddrqjBetween(
-			List<String> mcus, String dct, List<String> next,
-			List<String> last, BigDecimal fecha1, BigDecimal fecha2, Sort o);
+	@Query("select f from F4211 f where f.sdmcu in ?1 "
+			+ "and f.id.sddcto = ?2 and f.sddrqj between ?3 and ?4 "
+			+ "and  (f.sdnxtr in ?5 or f.sdlttr in ?6)")
+	List<F4211> findBySdmcuInAndIdSddctoAndSddrqjBetweenAndSdnxtrInOrSdlttrIn(
+			List<String> mcus, String dct, BigDecimal fecha1,
+			BigDecimal fecha2, List<String> next, List<String> last, Sort o);
+
+	List<F4211> findBySdcarsAndSditmAndSdlttrIn(Double carga, Double item,
+			List<String> lttr, Sort o);
 
 }

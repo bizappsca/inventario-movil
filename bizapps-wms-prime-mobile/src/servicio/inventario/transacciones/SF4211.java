@@ -292,17 +292,23 @@ public class SF4211 {
 		return f4211DAO.findBySddocAndSdxlln(docGrande, valueOf);
 	}
 
-	public List<F4211> buscarPorMcusYEstadosYFechas(List<String> mcus,
+	public List<F4211> buscarPorMcusYEstadosYFechasAgrupados(List<String> mcus,
 			String dct, List<String> next, List<String> last,
 			BigDecimal fecha1, BigDecimal fecha2) {
 		List<String> ordenar = new ArrayList<String>();
-		ordenar.add("id.sddcto");
-		ordenar.add("id.sddoco");
-		ordenar.add("id.sdlnid");
+		ordenar.add("sdcars");
 		ordenar.add("sditm");
 		Sort o = new Sort(Sort.Direction.ASC, ordenar);
 		return f4211DAO
-				.findBySdmcuInAndIdSddctoAndSdnxtrInOrSdlttrInAndSddrqjBetween(
-						mcus, dct, next, last, fecha1, fecha2, o);
+				.findBySdmcuInAndIdSddctoAndSddrqjBetweenAndSdnxtrInOrSdlttrIn(
+						mcus, dct, fecha1, fecha2, next, last, o);
+	}
+
+	public List<F4211> buscarPorCargaEItem(Double carga, Double item,
+			List<String> lttr) {
+		List<String> ordenar = new ArrayList<String>();
+		ordenar.add("sditm");
+		Sort o = new Sort(Sort.Direction.ASC, ordenar);
+		return f4211DAO.findBySdcarsAndSditmAndSdlttrIn(carga, item, lttr, o);
 	}
 }

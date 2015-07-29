@@ -6,6 +6,8 @@
 <?script src="../../bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
 <zk xmlns:w="client" xmlns:n="native">
 	<style src="../../public/bootstrap-slate.min.css" />
+	<style src="../../public/Estilo.css" />
+	<script src="../../public/progress.js" />
 	<div apply="controlador.maestros.CConfirmarPedido" height="100%">
 		<vbox height="100%">
 			<div height="8%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
@@ -64,6 +66,10 @@
 										<label value="${each.sditm}, ${each.sdlitm}" />
 										<image src="../../public/imagenes/botones/arrow.png"
 											class="img-rounded" />
+									</hlayout>
+									<hlayout>
+										<label value="Lote(s):" style="color:black; font-weight:bold" />
+										<label value="${each.sdapum}" />
 									</hlayout>
 									<hlayout>
 										<label value="Chofer:" style="color:black; font-weight:bold" />

@@ -578,9 +578,8 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 						j++;
 					}
 				} else
-					lots = new ArrayList<>(Arrays.asList("Caducado",
-							"Reservado", "Comprometido", "Cuarentena",
-							"Bloqueado", "Dañado", "Apartado"));
+					lots = new ArrayList<>(Arrays.asList("Cuarentena",
+							"Bloqueado"));
 
 				if (valoresDcto != null) {
 					String valores[] = valoresDcto.split(",");
@@ -738,6 +737,13 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 		Calendar calendario = Calendar.getInstance();
 		calendario.setTime(fecha);
 		calendario.add(Calendar.DAY_OF_YEAR, +1);
+		return fecha = calendario.getTime();
+	}
+
+	public Date restarUnDia(Date fecha) {
+		Calendar calendario = Calendar.getInstance();
+		calendario.setTime(fecha);
+		calendario.add(Calendar.DAY_OF_YEAR, -1);
 		return fecha = calendario.getTime();
 	}
 

@@ -2,6 +2,8 @@ package controlador.maestros;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,35 +58,68 @@ public class CConfirmarPedido extends CGenerico {
 		if ((List<String>) mapaVersiones.get("lttr") != null)
 			last = (List<String>) mapaVersiones.get("lttr");
 		mapaVersiones.clear();
-		if (!mcus.isEmpty())
-			listaGeneral = servicioF4211.buscarPorMcusYEstados(mcus, dct, next,
-					last);
-		ltbLista.setModel(new ListModelList<F4211>(listaGeneral));
+		ltbLista.setModel(new ListModelList<F4211>(cargarLista(
+				restarUnDia(fecha), fecha)));
+	}
+
+	private Collection<? extends F4211> cargarLista(Date fecha1, Date fecha2) {
+		if (!mcus.isEmpty()) {
+			listaGeneral.clear();
+			List<F4211> listaAuxiliar = servicioF4211
+					.buscarPorMcusYEstadosYFechasAgrupados(mcus, dct, next,
+							last, transformarGregorianoAJulia(fecha1),
+							transformarGregorianoAJulia(fecha2));
+			if (!listaAuxiliar.isEmpty()) {
+				Double documento = listaAuxiliar.get(0).getSdcars();
+				Double item = listaAuxiliar.get(0).getSditm();
+				String lotes = "";
+				F4211 objeto = listaAuxiliar.get(0);
+				for (int i = 0; i < listaAuxiliar.size(); i++) {
+					if (documento.equals(listaAuxiliar.get(i).getSdcars())) {
+						if (item.equals(listaAuxiliar.get(i).getSditm())) {
+							lotes += listaAuxiliar.get(i).getSdlotn() + ",";
+						} else {
+							objeto.setSdapum(lotes);
+							listaGeneral.add(objeto);
+							lotes ="";
+							documento = listaAuxiliar.get(i).getSdcars();
+							item = listaAuxiliar.get(i).getSditm();
+							objeto = listaAuxiliar.get(i);
+							i--;
+						}
+					} else {
+						objeto.setSdapum(lotes);
+						listaGeneral.add(objeto);
+						lotes ="";
+						documento = listaAuxiliar.get(i).getSdcars();
+						item = listaAuxiliar.get(i).getSditm();
+						objeto = listaAuxiliar.get(i);
+						i--;
+					}
+				}
+				objeto.setSdapum(lotes);
+				listaGeneral.add(objeto);
+			}
+		}
+		return listaGeneral;
 	}
 
 	@Listen("onChange = #dtbDesde, #dtbHasta")
 	public void buscar() {
-		System.out.println("metodo");
-		System.out.println(Convertidor.transformarGregorianoAJulia(dtbDesde
-				.getValue()));
-		System.out.println(Convertidor.transformarGregorianoAJulia(dtbHasta
-				.getValue()));
-		listaGeneral = servicioF4211.buscarPorMcusYEstadosYFechas(mcus, dct,
-				next, last,
-				Convertidor.transformarGregorianoAJulia(dtbDesde.getValue()),
-				Convertidor.transformarGregorianoAJulia(dtbHasta.getValue()));
-		ltbLista.setModel(new ListModelList<F4211>(listaGeneral));
+		ltbLista.setModel(new ListModelList<F4211>(cargarLista(
+				dtbDesde.getValue(), dtbHasta.getValue())));
 	}
 
 	@Listen("onSelect = #ltbLista")
 	public void selectedNode() {
 		if (ltbLista.getSelectedItem() != null) {
-			HashMap<String, Object> mapaGeneral = new HashMap<String, Object>();
 			F4211 arbol = ltbLista.getSelectedItem().getValue();
-			F4211PK clave = arbol.getId();
 			String ruta = "/vistas/transacciones/VConfirmacionDetalle.zul";
-			mapaGeneral.put("clave", clave);
-			Sessions.getCurrent().setAttribute("clave", arbol.getId());
+			Sessions.getCurrent().setAttribute("item", arbol.getSditm());
+			Sessions.getCurrent().setAttribute("carga", arbol.getSdcars());
+			Sessions.getCurrent().setAttribute("last", last);
+			Sessions.getCurrent().setAttribute("sucursales", mcus);
+			Sessions.getCurrent().setAttribute("estados", lots);
 			Executions.sendRedirect(ruta);
 		}
 	}

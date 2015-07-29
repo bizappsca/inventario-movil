@@ -28,14 +28,17 @@ public class CConfirmarDetalle extends CGenerico {
 	@Wire
 	private Label label;
 	private List<F4211> listaPedido = new ArrayList<F4211>();
-	private F4211PK clave = new F4211PK();
+	private Double carga, item;
+	private List<String> lttr = new ArrayList<String>();
 
 	@Override
 	public void inicializar() throws IOException {
-		clave = (F4211PK) Sessions.getCurrent().getAttribute("clave");
-		F4211 f4211 = servicioF4211.buscar(clave);
-		label.setValue(String.valueOf(f4211.getSdcars().longValue()));
-		listaPedido.add(f4211);
+		carga = (Double) Sessions.getCurrent().getAttribute("carga");
+		item = (Double) Sessions.getCurrent().getAttribute("item");
+		lttr = (List<String>) Sessions.getCurrent().getAttribute("last");
+		List<F4211> f4211 = servicioF4211.buscarPorCargaEItem(carga, item, lttr);
+		label.setValue("Orden: "+String.valueOf(f4211.get(0).getSdcars()));
+		listaPedido.addAll(f4211);
 		ltbPedidos.setModel(new ListModelList<F4211>(listaPedido));
 		ltbPedidos.renderAll();
 
@@ -45,6 +48,19 @@ public class CConfirmarDetalle extends CGenerico {
 	public void atras() {
 		Executions
 				.sendRedirect("/vistas/transacciones/VConfirmacionMobile.zul");
+	}
+
+	@Listen("onSelect = #ltbPedidos")
+	public void selectedNode() {
+		if (ltbPedidos.getSelectedItem() != null) {
+			HashMap<String, Object> mapaGeneral = new HashMap<String, Object>();
+			F4211 arbol = ltbPedidos.getSelectedItem().getValue();
+			F4211PK clave = arbol.getId();
+			String ruta = "/vistas/transacciones/VSeleccionarLote.zul";
+			mapaGeneral.put("clave", clave);
+			Sessions.getCurrent().setAttribute("clave", arbol.getId());
+			Executions.sendRedirect(ruta);
+		}
 	}
 
 }

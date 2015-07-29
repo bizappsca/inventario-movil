@@ -6,6 +6,7 @@
 <?script src="../bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
 <zk xmlns:w="client" xmlns:n="native">
 	<style src="../public/bootstrap-slate.min.css" />
+	<script src="../public/progress.js" />
 	<div apply="controlador.portal.CArbol" height="100%">
 		<vbox height="100%">
 			<div height="8%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"  style="border:none">
