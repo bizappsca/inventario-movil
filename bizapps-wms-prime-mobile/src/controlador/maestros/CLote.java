@@ -57,28 +57,23 @@ public class CLote extends CGenerico {
 		Executions.sendRedirect("/vistas/transacciones/VSeleccionarLote.zul");
 	}
 
-	@Listen("onChanging = #txtSearch; onChange = #txtSearch")
+	@Listen("onChange = #txtSearch")
 	public void buscar() {
-		System.out.println("change");
+		ltbPedidos.clearSelection();
 		ltbPedidos.getItems().clear();
 		ltbPedidos.renderAll();
-		if (txtSearch.getValue() != null) {
-			List<F41021> lista = new ArrayList<F41021>();
-			for (F41021 f0004 : saldo) {
-				if (f0004.getId().getLilotn().toLowerCase()
-						.contains(txtSearch.getValue().toLowerCase())) {
-					lista.add(f0004);
-				}
-			}
-			ltbPedidos.setModel(new ListModelList<F41021>(lista));
-		} else
-			ltbPedidos.setModel(new ListModelList<F41021>(saldo));
+		final List<F41021> lista = new ArrayList<F41021>();
+		for (F41021 f0004 : saldo) {
+			if (f0004.getId().getLilotn().toLowerCase()
+					.contains(txtSearch.getValue().toLowerCase()))
+				lista.add(f0004);
+		}
+		ltbPedidos.setModel(new ListModelList<F41021>(lista));
 		ltbPedidos.renderAll();
 	}
 
 	@Listen("onBlur = #txtSearch")
 	public void blur() {
-		System.out.println("onblur");
 		txtSearch.setFocus(true);
 	}
 
@@ -88,7 +83,7 @@ public class CLote extends CGenerico {
 			F41021 arbol = ltbPedidos.getSelectedItem().getValue();
 			F4211 object = new F4211();
 			object.setSdlotn(arbol.getId().getLilotn());
-			object.setSdpqor(arbol.getLipqoh());
+			object.setSduorg(arbol.getLipqoh());
 			listaLotes.add(object);
 			String ruta = "/vistas/transacciones/VSeleccionarLote.zul";
 			Sessions.getCurrent().setAttribute("listaLotes", listaLotes);

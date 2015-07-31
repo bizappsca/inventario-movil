@@ -69,7 +69,7 @@
 										</hlayout>
 										<hlayout>
 											<label value="Cantidad:" style="color:black; font-weight:bold" />
-											<spinner value="${each.sdpqor}" width="100%" step="1"
+											<spinner value="${each.sduorg}" width="100%" step="1"
 												constraint="min 0 max 99999999"
 												tooltiptext="Ingrese la Cantidad de Items que pertenecen al Lote" />
 										</hlayout>

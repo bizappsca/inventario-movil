@@ -43,13 +43,10 @@
 									</hlayout>
 									<hlayout>
 										<label value="Cantidad:" style="color:black; font-weight:bold" />
-										<label value="${each.sdpqor}" />
+										<label value="${each.sduorg}" />
 									</hlayout>
 								</vlayout>
 							</listcell>
-							<!-- <listcell label="${each.sditm}" /> <listcell label="${each.sdlitm}" 
-								/> <listcell label="${each.sdlotn}" /> <listcell label="${each.sduom}" /> 
-								<listcell label="${each.sdpqor}" /> -->
 						</listitem>
 					</template>
 				</listbox>

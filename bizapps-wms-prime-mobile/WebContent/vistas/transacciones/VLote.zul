@@ -26,7 +26,7 @@
 			<separator />
 			<div height="100%" width="auto" class="bs-example">
 				<vbox>
-					<textbox id="txtSearch" hflex="1" maxlength="100" width="10px" />
+					<textbox  instant="true" id="txtSearch" hflex="1" maxlength="100" width="auto" placeholder="Buscar lotes" />
 					<listbox id="ltbPedidos" height="auto" width="auto"
 						emptyMessage="No Hay Pedidos para este intervalo de fechas" span="true">
 						<template name="model">
