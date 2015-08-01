@@ -51,7 +51,7 @@
 			<div height="100%" width="auto" class="bs-example">
 				<vbox>
 					<button autodisable="self" id="btnGuardar" class="btn"
-						label="Agregar Lote" tooltiptext="Guardar Lotes en el Pedido"
+						label="Guardar Pedido" tooltiptext="Guardar Lotes en el Pedido"
 						image="/public/imagenes/botones/guardar.png" width="150px" />
 					<listbox id="ltbPedidos" height="auto" width="auto"
 						emptyMessage="No Hay Pedidos para este intervalo de fechas" span="true">

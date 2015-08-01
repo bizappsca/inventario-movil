@@ -45,41 +45,50 @@
 			</div>
 			<separator />
 			<div height="100%" width="auto" class="bs-example">
-				<listbox id="ltbLista" height="auto" width="auto"
-					emptyMessage="No Hay Pedidos para este intervalo de fechas" span="true">
-					<!-- <listhead> <listheader label="Fecha" hflex="min" /> <listheader 
-						label="Nº Carga" hflex="min" /> <listheader label="Item" hflex="min" /> <listheader 
-						label="Descripcion" hflex="min" /> <listheader label="Cedula" hflex="min" 
-						/> <listheader label="Nombre" hflex="min" /> </listhead> -->
-					<template name="model">
-						<listitem>
-							<listcell>
-								<vlayout>
-									<hlayout>
-										<label value="Fecha:" style="color:black; font-weight:bold" />
-										<label value="${each.traerFecha()}" />
-										<label value="Nro Carga:" style="color:black; font-weight:bold" />
-										<label value="${each.sdcars}" />
-									</hlayout>
-									<hlayout>
-										<label value="Item:" style="color:black; font-weight:bold" />
-										<label value="${each.sditm}, ${each.sdlitm}" />
-										<image src="../../public/imagenes/botones/arrow.png"
-											class="img-rounded" />
-									</hlayout>
-									<hlayout>
-										<label value="Lote(s):" style="color:black; font-weight:bold" />
-										<label value="${each.sdapum}" />
-									</hlayout>
-									<hlayout>
-										<label value="Chofer:" style="color:black; font-weight:bold" />
-										<label value="${each.sdir04}, ${each.sdir05}" />
-									</hlayout>
-								</vlayout>
-							</listcell>
-						</listitem>
-					</template>
-				</listbox>
+				<vbox>
+					<hbox>
+						<button autodisable="self" id="btnSeleccionar" class="btn"
+							label="Confirmar" tooltiptext="Seleccionar cargas para confirmar"
+							image="/public/imagenes/botones/seleccionar.png" width="150px" />
+						<button autodisable="self" id="btnProcesar" class="btn"
+							label="Procesar" tooltiptext="Confirmar las cargas seleccionadas"
+							image="/public/imagenes/botones/guardar.png" width="150px" visible="false"/>
+						<button autodisable="self" id="btnCancelar" class="btn"
+							label="Cancelar" tooltiptext="Cancelar seleccion de cargas"
+							image="/public/imagenes/botones/cancelar.png" width="150px"  visible="false"/>
+					</hbox>
+					<listbox id="ltbLista" height="auto" width="auto"
+						emptyMessage="No Hay Pedidos para este intervalo de fechas" span="true">
+						<template name="model">
+							<listitem>
+								<listcell>
+									<vlayout>
+										<hlayout>
+											<label value="Fecha:" style="color:black; font-weight:bold" />
+											<label value="${each.traerFecha()}" />
+											<label value="Nro Carga:" style="color:black; font-weight:bold" />
+											<label value="${each.sdcars}" />
+										</hlayout>
+										<hlayout>
+											<label value="Item:" style="color:black; font-weight:bold" />
+											<label value="${each.sditm}, ${each.sdlitm}" />
+											<image src="../../public/imagenes/botones/arrow.png"
+												class="img-rounded" />
+										</hlayout>
+										<hlayout>
+											<label value="Lote(s):" style="color:black; font-weight:bold" />
+											<label value="${each.sdapum}" />
+										</hlayout>
+										<hlayout>
+											<label value="Chofer:" style="color:black; font-weight:bold" />
+											<label value="${each.sdir04}, ${each.sdir05}" />
+										</hlayout>
+									</vlayout>
+								</listcell>
+							</listitem>
+						</template>
+					</listbox>
+				</vbox>
 			</div>
 		</vbox>
 	</div>

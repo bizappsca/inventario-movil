@@ -13,8 +13,12 @@ import modelo.inventario.transacciones.F4211;
 
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.Button;
 import org.zkoss.zul.Datebox;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
@@ -35,6 +39,12 @@ public class CConfirmarPedido extends CGenerico {
 	private Datebox dtbDesde;
 	@Wire
 	private Datebox dtbHasta;
+	@Wire
+	private Button btnSeleccionar;
+	@Wire
+	private Button btnProcesar;
+	@Wire
+	private Button btnCancelar;
 	private List<F4211> listaGeneral = new ArrayList<F4211>();
 
 	@Override
@@ -81,7 +91,7 @@ public class CConfirmarPedido extends CGenerico {
 						} else {
 							objeto.setSdapum(lotes);
 							listaGeneral.add(objeto);
-							lotes ="";
+							lotes = "";
 							documento = listaAuxiliar.get(i).getSdcars();
 							item = listaAuxiliar.get(i).getSditm();
 							objeto = listaAuxiliar.get(i);
@@ -90,7 +100,7 @@ public class CConfirmarPedido extends CGenerico {
 					} else {
 						objeto.setSdapum(lotes);
 						listaGeneral.add(objeto);
-						lotes ="";
+						lotes = "";
 						documento = listaAuxiliar.get(i).getSdcars();
 						item = listaAuxiliar.get(i).getSditm();
 						objeto = listaAuxiliar.get(i);
@@ -112,21 +122,61 @@ public class CConfirmarPedido extends CGenerico {
 
 	@Listen("onSelect = #ltbLista")
 	public void selectedNode() {
-		if (ltbLista.getSelectedItem() != null) {
-			F4211 arbol = ltbLista.getSelectedItem().getValue();
-			String ruta = "/vistas/transacciones/VConfirmacionDetalle.zul";
-			Sessions.getCurrent().setAttribute("item", arbol.getSditm());
-			Sessions.getCurrent().setAttribute("carga", arbol.getSdcars());
-			Sessions.getCurrent().setAttribute("last", last);
-			Sessions.getCurrent().setAttribute("sucursales", mcus);
-			Sessions.getCurrent().setAttribute("estados", lots);
-			Executions.sendRedirect(ruta);
-		}
+		if (ltbLista.getSelectedItem() != null)
+			if (!ltbLista.isMultiple()) {
+				F4211 arbol = ltbLista.getSelectedItem().getValue();
+				String ruta = "/vistas/transacciones/VConfirmacionDetalle.zul";
+				Sessions.getCurrent().setAttribute("item", arbol.getSditm());
+				Sessions.getCurrent().setAttribute("carga", arbol.getSdcars());
+				Sessions.getCurrent().setAttribute("last", last);
+				Sessions.getCurrent().setAttribute("sucursales", mcus);
+				Sessions.getCurrent().setAttribute("estados", lots);
+				Executions.sendRedirect(ruta);
+			}
 	}
 
 	@Listen("onClick = #imagen")
 	public void atras() {
 		Executions.sendRedirect("/vistas/inicio.zul");
+	}
+
+	@Listen("onClick = #btnSeleccionar")
+	public void seleccionar() {
+		mostrarBotones(true);
+		listasMultiples(true);
+	}
+
+	@Listen("onClick = #btnProcesar")
+	public void confirmar() {
+		confirmarCarga();
+		mostrarBotones(false);
+		listasMultiples(false);
+		ltbLista.setModel(new ListModelList<F4211>(cargarLista(
+				restarUnDia(fecha), fecha)));
+	}
+
+	@Listen("onClick = #btnCancelar")
+	public void cancelar() {
+		mostrarBotones(false);
+		listasMultiples(false);
+	}
+
+	public void mostrarBotones(boolean visible) {
+		btnSeleccionar.setVisible(!visible);
+		btnCancelar.setVisible(visible);
+		btnProcesar.setVisible(visible);
+	}
+
+	public void listasMultiples(boolean multiples) {
+		ltbLista.setMultiple(!multiples);
+		ltbLista.setCheckmark(!multiples);
+		ltbLista.setMultiple(multiples);
+		ltbLista.setCheckmark(multiples);
+	}
+
+	private void confirmarCarga() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -61,6 +61,8 @@ public class CSeleccionarLote extends CGenerico {
 
 	@Listen("onClick = #imagen")
 	public void atras() {
+
+		Sessions.getCurrent().removeAttribute("listaLotes");
 		Executions
 				.sendRedirect("/vistas/transacciones/VConfirmacionDetalle.zul");
 	}
@@ -113,7 +115,8 @@ public class CSeleccionarLote extends CGenerico {
 			F4211 objet = servicioF4211.buscar(clave);
 			List<F4211> listaGuardar = new ArrayList<F4211>();
 			F4211 anterior = servicioF4211.buscar(clave);
-			for (int i = 0; i < listaPedido.size(); i++) {
+			ltbPedidos.renderAll();
+			for (int i = 0; i < ltbPedidos.getItemCount(); i++) {
 				Listitem listItem = ltbPedidos.getItemAtIndex(i);
 				String lote = ((Label) ((listItem.getChildren().get(0)
 						.getChildren().get(0).getChildren().get(0)
@@ -121,16 +124,14 @@ public class CSeleccionarLote extends CGenerico {
 				Integer cantidad = ((Spinner) ((listItem.getChildren().get(0)
 						.getChildren().get(0).getChildren().get(1)
 						.getChildren().get(1)))).getValue();
-				F4211 ob = listItem.getValue();
-				listaGuardar.add(crearNuevo(lote, cantidad, ob,
+				listaGuardar.add(crearNuevo(lote, cantidad, anterior,
 						anterior.getSditm(), anterior.getSdmcu(),
-						anterior.getSdlocn()));
-
+						anterior.getSdlocn(),ltbPedidos.getItemCount()+i));
 				F41021PK claveSaldo = new F41021PK();
 				claveSaldo.setLiitm(anterior.getSditm());
 				claveSaldo.setLilocn(anterior.getSdlocn());
 				claveSaldo.setLimcu(anterior.getSdmcu());
-				claveSaldo.setLilotn(anterior.getSdlotn());
+				claveSaldo.setLilotn(lote);
 				F41021 f = servicioF41021.buscar(claveSaldo);
 				double suma = 0;
 				if (f != null) {
@@ -144,7 +145,7 @@ public class CSeleccionarLote extends CGenerico {
 								+ ". Por favor, verifique su seleccion. Solo Posee disponibilidad para esta seleccion de: "
 								+ suma);
 						error = true;
-						i = listaPedido.size();
+						i = ltbPedidos.getItemCount();
 					} else {
 						f.setLihcom(f.getLihcom() + cantidad);
 						if (claveSaldo.getLilocn().equals(objet.getSdlocn())
@@ -159,32 +160,33 @@ public class CSeleccionarLote extends CGenerico {
 					}
 				} else {
 					error = true;
-					i = listaPedido.size();
+					i = ltbPedidos.getItemCount();
 					Mensaje.mensajeError("No se ha encontrado la Disponibilidad de este item");
 				}
 			}
 			if (!error) {
-				Mensaje.mensajeInformacion("Guardado de mentira, paso validaciones");
-//				servicioF41021.guardarVarios(listaSaldos);
-//				servicioF4211.guardarVarios(listaGuardar);
-//				Mensaje.mensajeInformacion("Lineas de Pedido modificadas correctamente");
-//				atras();
+				Mensaje.mensajeInformacion("Pedido guardado correctamente");
+				servicioF41021.guardarVarios(listaSaldos);
+				servicioF4211.guardarVarios(listaGuardar);
+				Mensaje.mensajeInformacion("Lineas de Pedido modificadas correctamente");
+				atras();
 			}
 		}
 	}
 
 	private F4211 crearNuevo(String lote, Integer cantidad, F4211 f4211,
-			Double item, String mcu, String loc) {
+			Double item, String mcu, String loc, int valor) {
 		F4211PK claveNueva = new F4211PK();
 		claveNueva.setSddcto(clave.getSddcto());
 		claveNueva.setSddoco(clave.getSddoco());
 		claveNueva.setSdkcoo(clave.getSdkcoo());
-		if (f4211.getId() == null) {
+		String lote2 = f4211.getSdlotn();
+		if (!lote.equals(lote2)) {
 			Double ultimoValorLinea = servicioF4211.buscarUltimaLinea(clave);
-			int numero = 1;
-			if (ltbPedidos.getItemCount() != 0)
-				numero = ltbPedidos.getItemCount();
-			Double nuevo = ultimoValorLinea + numero;
+//			int numero = 1;
+//			if (ltbPedidos.getItemCount() != 0)
+//				numero = ltbPedidos.getItemCount();
+			Double nuevo = ultimoValorLinea + valor;
 			claveNueva.setSdlnid(nuevo);
 		} else
 			claveNueva.setSdlnid(f4211.getId().getSdlnid());
