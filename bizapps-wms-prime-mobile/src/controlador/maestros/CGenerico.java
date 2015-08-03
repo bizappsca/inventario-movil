@@ -832,6 +832,10 @@ public abstract class CGenerico extends SelectorComposer<Component> {
 				- desde.get(Calendar.DAY_OF_YEAR))
 				+ "Dias";
 	}
+	
+	public void redireccionar() {
+		Executions.sendRedirect("../inicio.zul");
+	}
 	//
 	// private String verificarUDC(String sy, String rt, String ky,
 	// String descripcion, int max) {

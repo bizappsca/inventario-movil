@@ -33,14 +33,18 @@ public class CConfirmarDetalle extends CGenerico {
 
 	@Override
 	public void inicializar() throws IOException {
-		carga = (Double) Sessions.getCurrent().getAttribute("carga");
-		item = (Double) Sessions.getCurrent().getAttribute("item");
-		lttr = (List<String>) Sessions.getCurrent().getAttribute("last");
-		List<F4211> f4211 = servicioF4211.buscarPorCargaEItem(carga, item, lttr);
-		label.setValue("Orden: "+String.valueOf(f4211.get(0).getSdcars()));
-		listaPedido.addAll(f4211);
-		ltbPedidos.setModel(new ListModelList<F4211>(listaPedido));
-		ltbPedidos.renderAll();
+		if (Sessions.getCurrent().getAttribute("carga") != null) {
+			carga = (Double) Sessions.getCurrent().getAttribute("carga");
+			item = (Double) Sessions.getCurrent().getAttribute("item");
+			lttr = (List<String>) Sessions.getCurrent().getAttribute("last");
+			List<F4211> f4211 = servicioF4211.buscarPorCargaEItem(carga, item,
+					lttr);
+			label.setValue("Orden: " + String.valueOf(f4211.get(0).getSdcars()));
+			listaPedido.addAll(f4211);
+			ltbPedidos.setModel(new ListModelList<F4211>(listaPedido));
+			ltbPedidos.renderAll();
+		} else
+			redireccionar();
 
 	}
 

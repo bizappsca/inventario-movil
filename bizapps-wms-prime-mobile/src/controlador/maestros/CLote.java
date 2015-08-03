@@ -38,18 +38,22 @@ public class CLote extends CGenerico {
 
 	@Override
 	public void inicializar() throws IOException {
-		listaLotes = (List<F4211>) Sessions.getCurrent().getAttribute(
-				"listaLotes");
-		sucursales = (List<String>) Sessions.getCurrent().getAttribute(
-				"sucursales");
-		estados = (List<String>) Sessions.getCurrent().getAttribute("estados");
-		item = (Double) Sessions.getCurrent().getAttribute("item");
-		F4101 articulo = servicioF4101.buscar(item);
-		saldo = servicioF41021.buscarSaldosSinEstados(articulo, estados,
-				sucursales);
-		ltbPedidos.setModel(new ListModelList<F41021>(saldo));
-		ltbPedidos.renderAll();
-		txtSearch.setFocus(true);
+		if (Sessions.getCurrent().getAttribute("item") != null) {
+			listaLotes = (List<F4211>) Sessions.getCurrent().getAttribute(
+					"listaLotes");
+			sucursales = (List<String>) Sessions.getCurrent().getAttribute(
+					"sucursales");
+			estados = (List<String>) Sessions.getCurrent().getAttribute(
+					"estados");
+			item = (Double) Sessions.getCurrent().getAttribute("item");
+			F4101 articulo = servicioF4101.buscar(item);
+			saldo = servicioF41021.buscarSaldosSinEstados(articulo, estados,
+					sucursales);
+			ltbPedidos.setModel(new ListModelList<F41021>(saldo));
+			ltbPedidos.renderAll();
+			txtSearch.setFocus(true);
+		} else
+			redireccionar();
 	}
 
 	@Listen("onClick = #imagen")
