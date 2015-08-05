@@ -5,12 +5,8 @@
 <?script src="/bootstrap/v3/assets/js/html5shiv.js" if="${zk.ie < 9}" ?>
 <?script src="/bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
 <zk>
-
 	<style src="public/bootstrap-slate.min.css" />
 	<script src="public/progress.js" />
-
-	<!-- <style> .z-groupbox-hr { background:#91CB14;border-radius: 30px 30px 
-		30px 30px } .z-groupbox { border-radius: 30px 30px 30px 30px } </style> -->
 	<zscript>
 		String variable = execution.getParameter("respuesta");
 		String
@@ -23,67 +19,49 @@
 		execution.getParameter("respuesta");
 	</zscript>
 	<window title="" border="none" height="100%" width="100%"
-		contentStyle="overflow:auto" apply="security.controlador.CIndex"
-		style="border:none; background-color:#A8E91F">
-		<borderlayout height="100%"
-			style="background-repeat:no-repeat;  background-color:#A8E91F; border:none">
-			<center border="none" style="background-color:#A8E91F; border:none">
-				<vbox height="100%" width="100%" align="center" pack="center"
-					style="border:none">
-					<div width="100%" height="10%" align="right">
-						<image src="/public/imagenes/generales/LogoIndex.jpg" />
+		contentStyle="overflow:auto" apply="security.controlador.CIndex">
+		<borderlayout height="90%"
+			style="background-repeat:no-repeat;  border:none">
+			<center border="none">
+				<borderlayout height="90%">
+					<north style="border:none" height="30%">
+						<div align="center">
 						<separator />
-						<separator />
-						<separator />
-						<separator />
-						<separator />
-						<separator />
-						<separator />
-						<separator />
-						<separator />
-						<separator />
-						<separator />
-						<separator />
-						<separator />
-						<separator />
-						<separator />
-
-					</div>
-					<div height="100%" width="100%" align="center">
-						<hlayout width="100%">
+								<separator />
+							<image src="/public/imagenes/generales/index.png" />
+						</div>
+					</north>
+					<center border="none">
+						<div align="center">
 							<h:form id="inicioSesion" action="j_spring_security_check"
-								method="POST" xmlns:h="native" align="left">
-								<vlayout width="100%">
-									<textbox placeholder="Usuario" height="35px" id="log_usuario"
-										name="username" hflex="1" width="70%" />
-								</vlayout>
-								<separator />
-								<vlayout width="100%">
-									<textbox placeholder="Contraseña" height="35px" id="log_clave"
-										type="password" name="password" width="100%" />
-								</vlayout>
+								method="POST" xmlns:h="native" align="center">
+								<textbox placeholder="Usuario" height="35px" id="log_usuario"
+									name="username" width="70%" />
 								<separator />
 								<separator />
-								<hlayout width="100%">
-									<button type="submit" label="Entrar"
-										image="/public/imagenes/botones/entrar.png" height="37px"
-										width="200px" style="font-size:18px" />
-								</hlayout>
+								<textbox placeholder="Contraseña" height="35px" id="log_clave"
+									type="password" name="password" width="70%" />
+								<separator />
+								<separator />
+								<separator />
+								<button type="submit" label="Entrar"
+									image="/public/imagenes/botones/entrar.png" height="37px"
+									width="60%" style="font-size:18px" />
 							</h:form>
-						</hlayout>
-						<vlayout width="100%">
-							<separator />
-							<separator />
-							<a href="">
-								<label id="lblOlvidoClave" sclass="pointer" value="¿Olvido su Contraseña?"
-									style="color:red;margin-left:10px;font-weight:bold;font-size:14px" />
-							</a>
-						</vlayout>
-					</div>
-				</vbox>
+						</div>
+					</center>
+					<south  border="0" height="30%">
+					<div align="center">
+						<a href="">
+							<label id="lblOlvidoClave" sclass="pointer" value="¿Olvido su Contraseña?"
+								style="color:#A4D942;margin-left:10px;font-weight:bold;font-size:14px" />
+						</a>
+						</div>
+					</south>
+				</borderlayout>
 			</center>
-			<south style="background-color:#A8E91F; border:none" border="0"
-				height="15%" collapsible="false">
+			<south  border="0"
+				height="8%" collapsible="false">
 				<div align="center" sclass="footer">
 					<separator></separator>
 					<label style="padding-center:35%;color: black"

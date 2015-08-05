@@ -1,76 +1,104 @@
-<zk>
-	<style src="/public/Estilo.css" />
-	<div apply="security.controlador.CEditarUsuario" id="divEditarUsuario">
-		<groupbox width="52%" mold="3d" title="Editar Usuario">
-			<grid width="100%">
-				<columns visible="false">
-					<column label="" width="35%" />
-					<column label="" width="65%" />
-				</columns>
-				<rows>
-					<row>
-						<label value="Nombre de Usuario:" class="etiqueta" />
-						<textbox id="txtNombreUsuarioEditar" maxlength="50"
-							disabled="true" tooltiptext="Nombre de Usuario Actual" />
-					</row>
-					<row>
-						<hbox>
-							<label value="Nombre:" class="etiqueta" />
-							<space />
-							<label value="*" style="font-weight:bold;color:red" />
-						</hbox>
-						<textbox id="txtNombre" maxlength="50"
-							tooltiptext="Ingrese el nombre de Usuario" />
-					</row>
-					<row>
-						<hbox>
-							<label value="Apellido:" class="etiqueta" />
-							<space />
-							<label value="*" style="font-weight:bold;color:red" />
-						</hbox>
-						<textbox id="txtApellido" maxlength="50"
-							tooltiptext="Ingrese el apellido de Usuario" />
-					</row>
-					<row>
-						<hbox>
-							<label value="Correo:" class="etiqueta" />
-							<space />
-							<label value="*" style="font-weight:bold;color:red" />
-						</hbox>
-						<textbox id="txtCorreo" maxlength="50"
-							tooltiptext="Ingrese el correo de Usuario (ejemplo@ejemplo.com)" />
-					</row>
-					<row>
-						<hbox>
-							<label value="Contraseña nueva:" class="etiqueta" />
-							<space />
-							<label value="*" style="font-weight:bold;color:red" />
-						</hbox>
-						<textbox id="txtClaveUsuarioNueva" type="password"
-							maxlength="256" width="250px" tabindex="8"
-							tooltiptext="Ingrese una Nueva Contraseña" />
-					</row>
-					<row>
-						<hbox>
-							<label value="Confirme su contraseña:" class="etiqueta" />
-							<space />
-							<label value="*" style="font-weight:bold;color:red" />
-						</hbox>
-						<textbox id="txtClaveUsuarioConfirmar" type="password"
-							maxlength="256" width="250px" tabindex="8" tooltiptext="Confirme su Contraseña" />
-					</row>
-					<row>
-						<label class="etiqueta" value="Adjuntar Imagen:" />
-						<fileupload label="Foto" id="fudImagenUsuario"
-							image="/public/imagenes/botones/cargar.png"
-							style="	background: #952C2C;font-size: 13px;color: white;cursor: pointer;width: 95px;height: 29px;	-webkit-border-radius: 0.7em;-moz-border-radius: 0.7em;	border-radius: 0.7em;" />
-						<label class="etiqueta" value="Imagen Seleccionada:" />
-						<image id="imgUsuario" width="50px" height="50px" />
-					</row>
-				</rows>
-			</grid>
+<?page title="Confirmacion de Carga" contentType="text/html;charset=utf-8"?>
+<?link rel="stylesheet" type="text/css"	href="../../bootstrap/v3/bootstrap/themes/bootstrap-default.min.css" if="${empty param.theme}"?>
+<?link rel="stylesheet" type="text/css"	href="../../bootstrap/v3/assets/css/docs.css" ?>
+<?link rel="stylesheet" type="text/css"	href="../../bootstrap/v3/assets/css/pygments-manni.css" ?>
+<?script src="../../bootstrap/v3/assets/js/html5shiv.js" if="${zk.ie < 9}" ?>
+<?script src="../../bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
+<zk xmlns:w="client" xmlns:n="native">
+	<style src="../../public/bootstrap-slate.min.css" />
+	<script src="../../public/progress.js" />
+	<div apply="controlador.portal.CEditarUsuario" id="divEditarUsuario" align="center">
+			<div height="8%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
+				style="border:none">
+				<borderlayout>
+					<west style="background-color:#A4D942" border="none" width="15%">
+						<div width="100%" height="100%" align="center">
+							<separator />
+							<separator />
+							<image id="imagen" style="cursor:pointer"
+								src="../../public/imagenes/botones/arrowBack.png" class="img-rounded" />
+						</div>
+					</west>
+					<center style="background-color:#A4D942" border="none">
+						<div align="center">
+							<separator />
+							<separator />
+						<label value="EDITAR USUARIO" class="label" />
+						</div>
+					</center>
+				</borderlayout>
+			</div>
 			<separator />
-			<div id="botoneraEditarUsuario" />
-		</groupbox>
+			<div  width="99%" height="99%" class="bs-example">
+					<div id="botoneraEditarUsuario"/>
+					<separator />
+					<grid width="100%">
+						<columns visible="false">
+							<column label="" width="40%" />
+							<column label="" width="60%" />
+						</columns>
+						<rows>
+							<row>
+								<label value="Nombre de Usuario:" style="color:black; font-weight:bold"/>
+								<textbox id="txtNombreUsuarioEditar" maxlength="50"
+									disabled="true" tooltiptext="Nombre de Usuario Actual" />
+							</row>
+							<row>
+								<hbox>
+									<label value="Nombre:" style="color:black; font-weight:bold"/>
+									<space />
+									<label value="*" style="font-weight:bold;color:red" />
+								</hbox>
+								<textbox id="txtNombre" maxlength="50"
+									tooltiptext="Ingrese el nombre de Usuario" />
+							</row>
+							<row>
+								<hbox>
+									<label value="Apellido:" style="color:black; font-weight:bold" />
+									<space />
+									<label value="*" style="font-weight:bold;color:red" />
+								</hbox>
+								<textbox id="txtApellido" maxlength="50"
+									tooltiptext="Ingrese el apellido de Usuario" />
+							</row>
+							<row>
+								<hbox>
+									<label value="Correo:" style="color:black; font-weight:bold" />
+									<space />
+									<label value="*" style="font-weight:bold;color:red" />
+								</hbox>
+								<textbox id="txtCorreo" maxlength="50"
+									tooltiptext="Ingrese el correo de Usuario (ejemplo@ejemplo.com)" />
+							</row>
+							<row>
+								<hbox>
+									<label value="Contraseña nueva:" style="color:black; font-weight:bold" />
+									<space />
+									<label value="*" style="font-weight:bold;color:red" />
+								</hbox>
+								<textbox id="txtClaveUsuarioNueva" type="password"
+									maxlength="256" width="250px" tabindex="8"
+									tooltiptext="Ingrese una Nueva Contraseña" />
+							</row>
+							<row>
+								<hbox>
+									<label value="Confirme su contraseña:" style="color:black; font-weight:bold" />
+									<space />
+									<label value="*" style="font-weight:bold;color:red" />
+								</hbox>
+								<textbox id="txtClaveUsuarioConfirmar" type="password"
+									maxlength="256" width="250px" tabindex="8" tooltiptext="Confirme su Contraseña" />
+							</row>
+							<row>
+								<label value="Adjuntar Imagen:" style="color:black; font-weight:bold" />
+								<fileupload label="Foto" id="fudImagenUsuario"
+									image="/public/imagenes/botones/cargar.png"
+									/>
+								<label value="Imagen Seleccionada:" />
+								<image id="imgUsuario" width="50px" height="50px" />
+							</row>
+						</rows>
+					</grid>
+			</div>
 	</div>
 </zk>

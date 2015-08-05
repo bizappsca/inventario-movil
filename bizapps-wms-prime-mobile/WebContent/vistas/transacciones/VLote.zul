@@ -6,28 +6,34 @@
 <?script src="../../bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
 <zk xmlns:w="client" xmlns:n="native">
 	<style src="../../public/bootstrap-slate.min.css" />
-	<style src="../../public/Estilo.css" />
 	<script src="../../public/progress.js" />
-	<div apply="controlador.maestros.CLote" height="100%">
-		<vbox height="100%">
+	<div apply="controlador.maestros.CLote" align="center">
 			<div height="8%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
 				style="border:none">
-				<separator />
-				<hbox widths="20%,80%" width="100%">
-					<div>
-						<image id="imagen" style="cursor:pointer"
-							src="../../public/imagenes/botones/arrowBack.png" class="img-rounded" />
-					</div>
-					<div>
-						<label value="Lotes" class="label" />
-					</div>
-				</hbox>
+				<borderlayout>
+					<west style="background-color:#A4D942" border="none" width="15%">
+						<div width="100%" height="100%" align="center">
+							<separator />
+							<separator />
+							<image id="imagen" style="cursor:pointer"
+								src="../../public/imagenes/botones/arrowBack.png" class="img-rounded" />
+						</div>
+					</west>
+					<center style="background-color:#A4D942" border="none">
+						<div align="center">
+							<separator />
+							<separator />
+							<label value="LOTES" class="label" />
+						</div>
+					</center>
+				</borderlayout>
 			</div>
 			<separator />
-			<div height="100%" width="auto" class="bs-example">
+			<div width="99%" height="99%" class="bs-example">
 				<vbox>
-					<textbox  instant="true" id="txtSearch" hflex="1" maxlength="100" width="auto" placeholder="Buscar lotes" />
-					<listbox id="ltbPedidos" height="auto" width="auto"
+					<textbox instant="true" id="txtSearch" hflex="1" maxlength="100"
+						width="auto" placeholder="Buscar lotes" />
+					<listbox id="ltbPedidos" 
 						emptyMessage="No Hay Pedidos para este intervalo de fechas" span="true">
 						<template name="model">
 							<listitem>
@@ -48,6 +54,5 @@
 					</listbox>
 				</vbox>
 			</div>
-		</vbox>
 	</div>
 </zk>

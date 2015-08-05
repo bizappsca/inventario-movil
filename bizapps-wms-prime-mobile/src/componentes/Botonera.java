@@ -45,15 +45,15 @@ public abstract class Botonera extends Hbox {
 		btnSalir.setImage("/public/imagenes/botones/salir.png");
 		btnAyuda.setImage("/public/imagenes/botones/ayuda.png");
 
-		btnAyuda.setSclass("btn");
-		btnEliminar.setSclass("btn");
-		btnAnnadir.setSclass("btn");
-		btnGuardar.setSclass("btn");
-		btnBuscar.setSclass("btn");
-		btnLimpiar.setSclass("btn");
-		btnSalir.setSclass("btn");
-		btnReporte.setSclass("btn");
-		btnSeleccionar.setSclass("btn");
+		btnAyuda.setClass("btn-default btn");
+		btnEliminar.setClass("btn-default btn");
+		btnAnnadir.setClass("btn-default btn");
+		btnGuardar.setClass("btn-default btn");
+		btnBuscar.setClass("btn-default btn");
+		btnLimpiar.setClass("btn-default btn");
+		btnSalir.setClass("btn-default btn");
+		btnReporte.setClass("btn-default btn");
+		btnSeleccionar.setClass("btn-default btn");
 		btnSeleccionar.setWidth("118px");
 
 		btnSeleccionar.setLabel("Seleccionar");

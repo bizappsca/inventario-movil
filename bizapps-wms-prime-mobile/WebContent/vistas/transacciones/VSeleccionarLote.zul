@@ -6,80 +6,82 @@
 <?script src="../../bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
 <zk xmlns:w="client" xmlns:n="native">
 	<style src="../../public/bootstrap-slate.min.css" />
-	<style src="../../public/Estilo.css" />
 	<script src="../../public/progress.js" />
-	<div apply="controlador.maestros.CSeleccionarLote" height="100%">
-		<vbox height="100%">
-			<div height="8%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
-				style="border:none">
-				<separator />
-				<hbox widths="20%,80%" width="100%">
-					<div>
+	<div apply="controlador.maestros.CSeleccionarLote" align="center">
+		<div height="8%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
+			style="border:none">
+			<borderlayout>
+				<west style="background-color:#A4D942" border="none" width="15%">
+					<div width="100%" height="100%" align="center">
+						<separator />
+						<separator />
 						<image id="imagen" style="cursor:pointer"
 							src="../../public/imagenes/botones/arrowBack.png" class="img-rounded" />
 					</div>
-					<div>
-						<label value="Confirmacion de Carga" class="label" />
+				</west>
+				<center style="background-color:#A4D942" border="none">
+					<div align="center">
+						<separator />
+						<separator />
+						<label value="CONFIRMACION DE CARGA" class="label" />
 					</div>
-				</hbox>
-			</div>
-			<div height="auto" width="auto" class="bs-example">
-				<grid width="auto">
-					<columns visible="false">
-						<column label="" width="35%" />
-						<column label="" width="65%" />
-					</columns>
-					<rows>
-						<row>
-							<label value="Item:" class="label" />
-							<label id="label" />
-						</row>
-						<row>
-							<label value="Cantidad orden:" class="label" />
-							<label id="lblCantidad" />
-						</row>
-						<row>
-							<button autodisable="self" id="btnAgregar" class="btn"
-								label="Agregar Lote" tooltiptext="Agregar Lotes a la operacion"
-								image="/public/imagenes/botones/annadir.png" width="150px" />
-							<hbox />
-						</row>
-					</rows>
-				</grid>
-			</div>
+				</center>
+			</borderlayout>
+		</div>
+		<div width="99%" height="99%" class="bs-example">
+			<grid height="99%" style="overflow-y:hidden">
+				<columns visible="false">
+					<column label="" width="35%" />
+					<column label="" width="65%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Item:" style="color:black; font-weight:bold" />
+						<label id="label" />
+					</row>
+					<row>
+						<label value="Cantidad orden:" style="color:black; font-weight:bold" />
+						<label id="lblCantidad" />
+					</row>
+				</rows>
+			</grid>
 			<separator />
-			<div height="100%" width="auto" class="bs-example">
-				<vbox>
-					<button autodisable="self" id="btnGuardar" class="btn"
-						label="Guardar Pedido" tooltiptext="Guardar Lotes en el Pedido"
-						image="/public/imagenes/botones/guardar.png" width="150px" />
-					<listbox id="ltbPedidos" height="auto" width="auto"
-						emptyMessage="No Hay Pedidos para este intervalo de fechas" span="true">
-						<template name="model">
-							<listitem>
-								<listcell>
-									<vlayout>
-										<hlayout>
-											<label value="Lote:" style="color:black; font-weight:bold" />
-											<label value="${each.sdlotn}" />
-											<space />
-											<space />
-											<image src="../../public/imagenes/botones/remove.png"
-												class="img-rounded" />
-										</hlayout>
-										<hlayout>
-											<label value="Cantidad:" style="color:black; font-weight:bold" />
-											<spinner value="${each.sduorg}" width="100%" step="1"
-												constraint="min 0 max 99999999"
-												tooltiptext="Ingrese la Cantidad de Items que pertenecen al Lote" />
-										</hlayout>
-									</vlayout>
-								</listcell>
-							</listitem>
-						</template>
-					</listbox>
-				</vbox>
+			<div align="left">
+				<button autodisable="self" id="btnAgregar" label="Agregar Lote"
+					tooltiptext="Agregar Lotes a la operacion" image="/public/imagenes/botones/annadir.png" />
 			</div>
-		</vbox>
+		</div>
+		<separator />
+		<div width="99%" height="99%" class="bs-example">
+			<vbox>
+				<button autodisable="self" id="btnGuardar" label="Guardar Pedido"
+					tooltiptext="Guardar Lotes en el Pedido" image="/public/imagenes/botones/guardar.png" />
+				<listbox id="ltbPedidos" emptyMessage="No Hay Pedidos para este intervalo de fechas"
+					span="true">
+					<template name="model">
+						<listitem>
+							<listcell>
+								<vlayout>
+									<hlayout>
+										<label value="Lote:" style="color:black; font-weight:bold" />
+										<label value="${each.sdlotn}" />
+										<space />
+										<space />
+										<image src="../../public/imagenes/botones/remove.png"
+											class="img-rounded" />
+									</hlayout>
+									<hlayout>
+										<label value="Cantidad:" style="color:black; font-weight:bold" />
+										<spinner value="${each.sduorg}" width="100%" step="1"
+											constraint="min 0 max 99999999"
+											tooltiptext="Ingrese la Cantidad de Items que pertenecen al Lote" />
+									</hlayout>
+								</vlayout>
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
+			</vbox>
+		</div>
 	</div>
 </zk>

@@ -18,7 +18,6 @@
 }
 
 .etiqueta {
-	font-weight: bold;
 	font-family: arial;
 	color: black;
 	font-size: 11px;
@@ -43,17 +42,6 @@
 	font-weight: bold;
 }
 
-.btn {
-	font-size: 11px;
-	color: black;
-	cursor: pointer;
-	width: 95px;
-	height: 29px;
-	-webkit-border-radius: 0.7em;
-	-moz-border-radius: 0.7em;
-	border-radius: 0.7em;
-	background: #91CB14;
-}
 
 .multilinea {
 	height: 35px;

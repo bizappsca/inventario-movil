@@ -7,50 +7,48 @@
 <zk xmlns:w="client" xmlns:n="native">
 	<style src="../public/bootstrap-slate.min.css" />
 	<script src="../public/progress.js" />
-	<div apply="controlador.portal.CArbol" height="100%">
-		<vbox height="100%">
-			<div height="8%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"  style="border:none">
-				<separator />
-				<hbox widths="65%,35%" width="100%">
-					<div align="center">
-						<div>
-							<image width="20%" height="10%" class="img-rounded"
-								src="../public/imagenes/generales/LogoInicio.jpg" />
-						</div>
+	<div apply="controlador.portal.CArbol"  align="center">
+		<div height="11%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
+			style="border:none">
+			<borderlayout height="100%">
+				<west style="background-color:#A4D942" border="none" width="50%">
+					<div  width="100%" height="100%" align="center">
+						<image width="50%" height="60%" 
+							src="../public/imagenes/generales/index.png" />
 						<label value="SISTEMA DE INVENTARIO" class="label" />
+
 					</div>
-					<div>
-						<hbox widths="50%,50%" width="100%">
-							<vbox>
-								<label class="label"
-									value="Usuario: ${desktop.execution.userPrincipal.name}" />
-								<a href="../j_spring_security_logout">
-									<label value="Cerrar Sesion" class="label" />
-								</a>
-							</vbox>
-							<image id="imagenes" class="img-rounded" width="40%"
-								height="40%" />
-						</hbox>
+				</west>
+				<center style="background-color:#A4D942" border="none">
+					<div align="center">
+							<separator />
+							<label class="label"
+								value="Usuario: ${desktop.execution.userPrincipal.name}" />
+							<separator />
+							<a href="../j_spring_security_logout">
+								<label value="Cerrar Sesion" class="label" />
+							</a>
 					</div>
-				</hbox>
-			</div>
-			<separator />
-			<separator />
-			<separator />
-			<separator />
-			<div height="100%" width="auto" class="bs-example">
-				<listbox id="ltbLista" height="auto" width="auto"
-					emptyMessage="No Hay Cumpleañeros en el dia Seleccionado">
-					<template name="model">
-						<listitem>
-							<listcell context="${each.idArbol}" >
-								<label value="${each.nombre}" />
-								<image src="../public/imagenes/botones/arrow.png"  class="img-rounded"/>
-							</listcell>
-						</listitem>
-					</template>
-				</listbox>
-			</div>
-		</vbox>
+				</center>
+				<east style="background-color:#A4D942" border="none" width="25%">
+					<div width="100%" height="100%" align="center">
+						<image id="imagenes"  width="50%" height="70%" />
+					</div>
+				</east>
+			</borderlayout>
+		</div>
+		<div width="99%" height="99%" class="bs-example">
+			<listbox id="ltbLista" height="auto" width="auto">
+				<template name="model">
+					<listitem>
+						<listcell context="${each.idArbol}">
+							<label value="${each.nombre}" />
+							<image src="../public/imagenes/botones/arrow.png" class="img-rounded" />
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</div>
+
 	</div>
 </zk>

@@ -39,7 +39,7 @@ public class CConfirmarDetalle extends CGenerico {
 			lttr = (List<String>) Sessions.getCurrent().getAttribute("last");
 			List<F4211> f4211 = servicioF4211.buscarPorCargaEItem(carga, item,
 					lttr);
-			label.setValue("Orden: " + String.valueOf(f4211.get(0).getSdcars()));
+			label.setValue("ORDEN: " + String.valueOf(f4211.get(0).getSdcars()));
 			listaPedido.addAll(f4211);
 			ltbPedidos.setModel(new ListModelList<F4211>(listaPedido));
 			ltbPedidos.renderAll();

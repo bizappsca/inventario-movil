@@ -8,49 +8,53 @@
 	<style src="../../public/bootstrap-slate.min.css" />
 	<style src="../../public/Estilo.css" />
 	<script src="../../public/progress.js" />
-	<div apply="controlador.maestros.CConfirmarDetalle" height="100%">
-		<vbox height="100%">
-			<div height="8%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
-				style="border:none">
-				<separator />
-
-				<hbox widths="20%,80%" width="100%">
-					<div>
+	<div apply="controlador.maestros.CConfirmarDetalle" align="center">
+		<div height="8%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
+			style="border:none">
+			<borderlayout>
+				<west style="background-color:#A4D942" border="none" width="15%">
+					<div width="100%" height="100%" align="center">
+						<separator />
+						<separator />
 						<image id="imagen" style="cursor:pointer"
 							src="../../public/imagenes/botones/arrowBack.png" class="img-rounded" />
 					</div>
-					<div>
+				</west>
+				<center style="background-color:#A4D942" border="none">
+					<div align="center">
+						<separator />
+						<separator />
 						<label id="label" class="label" />
 					</div>
-				</hbox>
-			</div>
-			<separator />
-			<div height="100%" width="auto" class="bs-example">
-				<listbox id="ltbPedidos" span="true" height="auto" width="auto">
-					<template name="model">
-						<listitem>
-							<listcell>
-								<vlayout>
-									<hlayout>
-										<label value="Item:" style="color:black; font-weight:bold" />
-										<label value="${each.sditm}, ${each.sdlitm}, ${each.sduom}" />
-									</hlayout>
-									<hlayout>
-										<label value="Lote:" style="color:black; font-weight:bold" />
-										<label value="${each.sdlotn}" />
-										<image src="../../public/imagenes/botones/arrow.png"
-											class="img-rounded" />
-									</hlayout>
-									<hlayout>
-										<label value="Cantidad:" style="color:black; font-weight:bold" />
-										<label value="${each.sduorg}" />
-									</hlayout>
-								</vlayout>
-							</listcell>
-						</listitem>
-					</template>
-				</listbox>
-			</div>
-		</vbox>
+				</center>
+			</borderlayout>
+		</div>
+		<separator />
+		<div width="99%" height="99%" class="bs-example">
+			<listbox id="ltbPedidos" span="true">
+				<template name="model">
+					<listitem>
+						<listcell>
+							<vlayout>
+								<hlayout>
+									<label value="Item:" style="color:black; font-weight:bold" />
+									<label value="${each.sditm}, ${each.sdlitm}, ${each.sduom}" />
+								</hlayout>
+								<hlayout>
+									<label value="Lote:" style="color:black; font-weight:bold" />
+									<label value="${each.sdlotn}" />
+									<image src="../../public/imagenes/botones/arrow.png"
+										class="img-rounded" />
+								</hlayout>
+								<hlayout>
+									<label value="Cantidad:" style="color:black; font-weight:bold" />
+									<label value="${each.sduorg}" />
+								</hlayout>
+							</vlayout>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</div>
 	</div>
 </zk>

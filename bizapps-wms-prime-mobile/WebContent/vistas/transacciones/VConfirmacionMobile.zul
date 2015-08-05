@@ -6,90 +6,78 @@
 <?script src="../../bootstrap/v3/assets/js/respond.min.js" if="${zk.ie < 9}"?>
 <zk xmlns:w="client" xmlns:n="native">
 	<style src="../../public/bootstrap-slate.min.css" />
-	<style src="../../public/Estilo.css" />
 	<script src="../../public/progress.js" />
-	<div apply="controlador.maestros.CConfirmarPedido" height="100%">
-		<vbox height="100%">
-			<div height="8%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
-				style="border:none">
-				<separator />
-				<hbox widths="20%,80%" width="100%">
-					<div>
+	<div apply="controlador.maestros.CConfirmarPedido" align="center">
+		<div height="11%" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
+			style="border:none">
+			<borderlayout>
+				<west style="background-color:#A4D942" border="none" width="15%">
+					<div width="100%" height="100%" align="center">
+							<separator />
+									<separator />
 						<image id="imagen" style="cursor:pointer"
 							src="../../public/imagenes/botones/arrowBack.png" class="img-rounded" />
 					</div>
-					<div>
-						<label value="Confirmacion de Carga" class="label" />
+				</west>
+				<center style="background-color:#A4D942" border="none">
+					<div align="center">
+						<div align="center">
+							<label value="CONFIRMACION DE CARGA" class="label" />
+						</div>
+						<div>
+							<separator />
+							<label value="Desde:" class="etiqueta" />
+							<datebox readonly="true" id="dtbDesde" width="auto"
+								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion" />
+							<label value="Hasta:" class="etiqueta" />
+							<datebox readonly="true" id="dtbHasta" width="auto"
+								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion" />
+						</div>
 					</div>
-				</hbox>
-			</div>
-			<div height="auto" width="auto" class="bs-example">
-				<grid width="auto">
-					<columns visible="false">
-						<column label="" width="25%" />
-						<column label="" width="25%" />
-						<column label="" width="25%" />
-						<column label="" width="25%" />
-					</columns>
-					<rows>
-						<row>
-							<label value="Desde:" class="label" />
-							<datebox readonly="true" width="50%" id="dtbDesde"
-								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion" />
-							<label value="Hasta:" class="label" />
-							<datebox readonly="true" width="auto" id="dtbHasta"
-								onCreate="self.value = new Date()" tooltiptext="Ingrese la Fecha de la Operacion" />
-						</row>
-					</rows>
-				</grid>
-			</div>
+				</center>
+			</borderlayout>
+		</div>
+		<div class="bs-example" width="99%" height="99%" align="left">
+			<button autodisable="self" id="btnSeleccionar" label="Confirmar"
+				tooltiptext="Seleccionar cargas para confirmar" image="/public/imagenes/botones/seleccionar.png" />
+			<button autodisable="self" id="btnProcesar" label="Procesar"
+				tooltiptext="Confirmar las cargas seleccionadas" image="/public/imagenes/botones/guardar.png"
+				visible="false" />
+			<button autodisable="self" id="btnCancelar" label="Cancelar"
+				tooltiptext="Cancelar seleccion de cargas" image="/public/imagenes/botones/quitar.png"
+				visible="false" />
 			<separator />
-			<div height="100%" width="auto" class="bs-example">
-				<vbox>
-					<hbox>
-						<button autodisable="self" id="btnSeleccionar" class="btn"
-							label="Confirmar" tooltiptext="Seleccionar cargas para confirmar"
-							image="/public/imagenes/botones/seleccionar.png" width="150px" />
-						<button autodisable="self" id="btnProcesar" class="btn"
-							label="Procesar" tooltiptext="Confirmar las cargas seleccionadas"
-							image="/public/imagenes/botones/guardar.png" width="150px" visible="false"/>
-						<button autodisable="self" id="btnCancelar" class="btn"
-							label="Cancelar" tooltiptext="Cancelar seleccion de cargas"
-							image="/public/imagenes/botones/cancelar.png" width="150px"  visible="false"/>
-					</hbox>
-					<listbox id="ltbLista" height="auto" width="auto"
-						emptyMessage="No Hay Pedidos para este intervalo de fechas" span="true">
-						<template name="model">
-							<listitem>
-								<listcell>
-									<vlayout>
-										<hlayout>
-											<label value="Fecha:" style="color:black; font-weight:bold" />
-											<label value="${each.traerFecha()}" />
-											<label value="Nro Carga:" style="color:black; font-weight:bold" />
-											<label value="${each.sdcars}" />
-										</hlayout>
-										<hlayout>
-											<label value="Item:" style="color:black; font-weight:bold" />
-											<label value="${each.sditm}, ${each.sdlitm}" />
-											<image src="../../public/imagenes/botones/arrow.png"
-												class="img-rounded" />
-										</hlayout>
-										<hlayout>
-											<label value="Lote(s):" style="color:black; font-weight:bold" />
-											<label value="${each.sdapum}" />
-										</hlayout>
-										<hlayout>
-											<label value="Chofer:" style="color:black; font-weight:bold" />
-											<label value="${each.sdir04}, ${each.sdir05}" />
-										</hlayout>
-									</vlayout>
-								</listcell>
-							</listitem>
-						</template>
-					</listbox>
-				</vbox>
-			</div>
-		</vbox>
+			<listbox id="ltbLista"
+				emptyMessage="No Hay Pedidos para este intervalo de fechas" span="true">
+				<template name="model">
+					<listitem>
+						<listcell>
+							<vlayout>
+								<hlayout>
+									<label value="Fecha:" style="color:black; font-weight:bold" />
+									<label value="${each.traerFecha()}" />
+									<label value="Nro Carga:" style="color:black; font-weight:bold" />
+									<label value="${each.sdcars}" />
+								</hlayout>
+								<hlayout>
+									<label value="Item:" style="color:black; font-weight:bold" />
+									<label value="${each.sditm}, ${each.sdlitm}" />
+									<image src="../../public/imagenes/botones/arrow.png"
+										class="img-rounded" />
+								</hlayout>
+								<hlayout>
+									<label value="Lote(s):" style="color:black; font-weight:bold" />
+									<label value="${each.sdapum}" />
+								</hlayout>
+								<hlayout>
+									<label value="Chofer:" style="color:black; font-weight:bold" />
+									<label value="${each.sdir04}, ${each.sdir05}" />
+								</hlayout>
+							</vlayout>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</div>
 	</div>
 </zk>

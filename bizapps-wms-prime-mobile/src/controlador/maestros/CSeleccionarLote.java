@@ -48,7 +48,7 @@ public class CSeleccionarLote extends CGenerico {
 		if (Sessions.getCurrent().getAttribute("clave") != null) {
 			clave = (F4211PK) Sessions.getCurrent().getAttribute("clave");
 			F4211 f4211 = servicioF4211.buscar(clave);
-			label.setValue("Item:" + f4211.getSditm() + ". "
+			label.setValue(f4211.getSditm() + ". "
 					+ f4211.getSdlitm());
 			lblCantidad.setValue(String.valueOf(f4211.getSdpqor()));
 			listaPedido.add(f4211);
