@@ -244,7 +244,8 @@ public class CConfirmarPedido extends CGenerico {
 									f4111.setIllocn(object.getSdlocn());
 									f4111.setIlitm(object.getSditm());
 									f4111.setIllitm(object.getSdlitm());
-									f4111.setIluom2(object.getSduom());
+									f4111.setIluom2(object.getSduom1());
+									f4111.setIltrum(object.getSduom());
 									f4111.setIlan8(object.getSdan8());
 									f4111.setIltrqt(object.getSduorg() * -1);
 									f4111.setIluncs(object.getSduncs());
